@@ -14,7 +14,6 @@ def calc_energy(img):
     # This converts it from a 2D filter to a 3D filter, replicating the same
     # filter for each channel: R, G, B
     filter_du = np.stack([filter_du] * 3, axis=2)
-
     filter_dv = np.array([
         [1.0, 0.0, -1.0],
         [2.0, 0.0, -2.0],
@@ -23,13 +22,10 @@ def calc_energy(img):
     # This converts it from a 2D filter to a 3D filter, replicating the same
     # filter for each channel: R, G, B
     filter_dv = np.stack([filter_dv] * 3, axis=2)
-
     img = img.astype('float32')
-    convolved = np.absolute(convolve(img, filter_du)) + np.absolute(convolve(img, filter_dv))
-
+    convolved = np.abs(convolve(img, filter_du)) + np.absolute(convolve(img, filter_dv))
     # We sum the energies in the red, green, and blue channels
     energy_map = convolved.sum(axis=2)
-
     return energy_map
 
 def crop_c(img, scale_c):
@@ -97,3 +93,5 @@ def main():
     imwrite(out_filename, out)
 
 main()
+
+
