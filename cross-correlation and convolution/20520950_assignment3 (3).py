@@ -24,9 +24,11 @@ def cross_correlation_2D2(img,ker):
             result[i, j] = np.sum(img[i:i+ker.shape[0], j:j+ker.shape[1]] * ker)
     return result
 if __name__ == "__main__":
-    img = np.array([[1,2,3,4,5,6,1],
-    [4,5,6,73,6,4,1],[3,4,6,3,3,1,6],[3,45,3,5,4,1,6],[9,6,4,4,3,1,3],[12,4,3,1,5,4,3]
-    ,[12,4,3,1,5,4,3]])
-    ker = np.array([[1,0,0], [0,1,0], [0,0,1]])
+    img = np.array([[0, 0, 0, 0, 0, 0],
+         [0, 9, 1, 1, 1, 0],
+         [0, 0, 1, 1, 1, 0],
+         [0, 4, 1, 1, 1, 0],
+         [0, 3, 0, 0, 0, 0]])
+    ker = np.array([[1,1,1], [1,1,1], [1,1,1]])
     re_cross = cross_correlation_2D2(img,ker)
     print(re_cross)
